@@ -66,6 +66,9 @@ const images = [
 
   const galleryContainer = document.querySelector('.gallery');
 
+
+
+
   const galleryMarkup = images.map(({ preview, original, description }) => {
     return `
       <li class="gallery-item">
@@ -76,5 +79,25 @@ const images = [
     `;
   }).join('');
 
-  galleryContainer.innerHTML = galleryMarkup;
+
+  galleryContainer.insertAdjacentHTML('afterbegin', galleryMarkup);
+
+galleryContainer.addEventListener('click', handlerGalleryImg);
+
+function handlerGalleryImg(evt){
+  evt.preventDefault();
+if (evt.target === evt.currentTarget) {
+  return;
+}
+
+  const isGalleryImage = evt.target.classList.contains('gallery-image');
+if(isGalleryImage){
+  const source = evt.target.dataset.source;
+  const instance = basicLightbox.create(`
+    <img src="${source}" width="1112" height="640">
+  `);
+
+  instance.show()};
+}
+
 
