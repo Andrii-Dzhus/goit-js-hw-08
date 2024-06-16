@@ -77,18 +77,15 @@ const images = [
   }).join('');
 
 
-  galleryContainer.insertAdjacentHTML('afterbegin', galleryMarkup);
+galleryContainer.insertAdjacentHTML('afterbegin', galleryMarkup);
 
 galleryContainer.addEventListener('click', handlerGalleryImg);
 
 function handlerGalleryImg(evt){
-  evt.preventDefault();
-if (evt.target === evt.currentTarget) {
-  return;
-}
 
-  const isGalleryImage = evt.target.classList.contains('gallery-image');
-if(isGalleryImage){
+  evt.preventDefault();
+
+if(evt.target.classList.contains('gallery-image')){
   const source = evt.target.dataset.source;
   const instance = basicLightbox.create(`
     <img src="${source}" width="1112" height="640">
